@@ -1,0 +1,10 @@
+--- a/library/src/amd_detail/hipsolver_sparse.cpp	2026-07-15 16:24:22.789331700 +0200
++++ b/library/src/amd_detail/hipsolver_sparse.cpp	2026-07-25 03:13:00.422384993 +0200
+@@ -38,6 +38,7 @@
+ #include <math.h>
+ #include <set>
+ #include <vector>
++#include <cstring>
+ 
+ #include <rocblas/internal/rocblas_device_malloc.hpp>
+ #include <rocblas/rocblas.h>

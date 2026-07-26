@@ -1,0 +1,36 @@
+--- a/CMakeLists.txt	2026-07-25 03:15:46.279018217 +0200
++++ b/CMakeLists.txt	2026-07-25 03:15:46.295234786 +0200
+@@ -253,17 +253,24 @@
+         # Linking lapack library requires fortran flags
+         set(THREADS_PREFER_PTHREAD_FLAG ON)
+         find_package(Threads REQUIRED)
+-        if(HIPSOLVER_FIND_PACKAGE_LAPACK_CONFIG)
+-            find_package(LAPACK 3.7 REQUIRED CONFIG)
++        # Honor -DLAPACK_LIBRARIES=... from the command line. find_package(LAPACK
++        # CONFIG) from netlib always overwrites with static liblapack.a/libblas.a,
++        # which fails under clang LTO + --no-undefined (geev not pulled from .a).
++        if(LAPACK_LIBRARIES)
++            message(STATUS "Using pre-specified LAPACK_LIBRARIES=${LAPACK_LIBRARIES}")
+         else()
+-            find_package(LAPACK 3.7 REQUIRED)
+-        endif()
++            if(HIPSOLVER_FIND_PACKAGE_LAPACK_CONFIG)
++                find_package(LAPACK 3.7 REQUIRED CONFIG)
++            else()
++                find_package(LAPACK 3.7 REQUIRED)
++            endif()
+ 
+-        if(NOT LAPACK_LIBRARIES)
+-            set(LAPACK_LIBRARIES
+-                ${LAPACK_blas_LIBRARIES}
+-                ${LAPACK_lapack_LIBRARIES}
+-            )
++            if(NOT LAPACK_LIBRARIES)
++                set(LAPACK_LIBRARIES
++                    ${LAPACK_blas_LIBRARIES}
++                    ${LAPACK_lapack_LIBRARIES}
++                )
++            endif()
+         endif()
+ 
+         if(NOT TARGET lapack_libraries)
