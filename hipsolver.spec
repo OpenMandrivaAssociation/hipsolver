@@ -3,6 +3,7 @@
 Name:		hipsolver
 Version:	7.14.0
 Release:	1
+%{!?rocm_llvm_maj_ver:%global rocm_llvm_maj_ver 23}
 Summary:	HIP dense linear algebra solvers (rocSOLVER wrapper)
 License:	MIT
 Group:		System/Libraries
