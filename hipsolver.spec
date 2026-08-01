@@ -2,7 +2,7 @@
 
 Name:		hipsolver
 Version:	7.14.0
-Release:	1
+Release:	2
 %{!?rocm_llvm_maj_ver:%global rocm_llvm_maj_ver 23}
 Summary:	HIP dense linear algebra solvers (rocSOLVER wrapper)
 License:	MIT
@@ -29,7 +29,6 @@ BuildRequires:	rocblas-devel
 BuildRequires:	lib64openblas-devel
 BuildRequires:	python3
 
-ExclusiveArch:	%{x86_64} %{aarch64}
 
 %description
 hipSOLVER is a thin HIP API wrapper over rocSOLVER. Sparse path uses
