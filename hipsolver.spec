@@ -1,14 +1,14 @@
-# hipSOLVER thin HIP wrapper over rocSOLVER (TheRock 10.0)
+# hipSOLVER thin HIP wrapper over rocSOLVER (TheRock 10.1)
 
 Name:		hipsolver
-Version:	10.0.0
+Version:	10.1.0
 Release:	1
 %{!?rocm_llvm_maj_ver:%global rocm_llvm_maj_ver 23}
 Summary:	HIP dense linear algebra solvers (rocSOLVER wrapper)
 License:	MIT
 Group:		System/Libraries
 URL:		https://github.com/ROCm/rocm-libraries
-Source0:	https://github.com/ROCm/rocm-libraries/releases/download/therock-10.0/hipsolver.tar.gz#/hipsolver-%{version}.tar.gz
+Source0:	https://github.com/ROCm/rocm-libraries/releases/download/therock-10.1/hipsolver.tar.gz#/hipsolver-%{version}.tar.gz
 # Clang 23 freestanding: memcpy needs <cstring>
 Patch0:		0001-include-cstring-sparse.patch
 # Honor -DLAPACK_LIBRARIES= (skip netlib CONFIG static .a overwrite)
